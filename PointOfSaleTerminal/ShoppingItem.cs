@@ -44,7 +44,7 @@ namespace PointOfSaleTerminal
             decimal standardCost = standardQualifiers * StandardPrice;
             decimal bulkCost = bulkQualifiers * BulkPrice;
 
-            return standardCost + standardCost;
+            return bulkCost + standardCost;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace PointOfSaleTerminal.UnitTests.Services
 
         [TestCase("ABCDABA", 13.25)]
         [TestCase("CCCCCCC", 6.0)]
-        [TestCase("CCCCCCC", 7.25)]
+        [TestCase("ABCD", 7.25)]
         public void Terminal_Scan_Should_Return_Total(string scan_items, decimal expected_total)
         {
             foreach (char ch in scan_items)
@@ -29,7 +29,7 @@ namespace PointOfSaleTerminal.UnitTests.Services
                 _terminal.ScanProduct(ch.ToString());
             }
 
-            Assert.AreEqual(_terminal.CalculateTotal(), expected_total);
+            Assert.AreEqual(expected_total, _terminal.CalculateTotal());
         }
     }
 }
