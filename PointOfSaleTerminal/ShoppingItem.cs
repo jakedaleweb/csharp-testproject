@@ -6,10 +6,10 @@ namespace PointOfSaleTerminal
     public class ShoppingItem
     {
         public string ProductKey;
-        public decimal StandardPrice;
-        public decimal BulkPrice;
-        public int BulkQuantity;
         public int Count = 0;
+        private decimal _standardPrice;
+        private decimal _bulkPrice;
+        private int _bulkQuantity;
 
         public ShoppingItem(
             string productKey,
@@ -24,25 +24,25 @@ namespace PointOfSaleTerminal
             }
 
             ProductKey = productKey;
-            StandardPrice = price;
-            BulkPrice = bulkPrice;
-            BulkQuantity = bulkQuantity;
+            _standardPrice = price;
+            _bulkPrice = bulkPrice;
+            _bulkQuantity = bulkQuantity;
         }
 
         public decimal CalculateCost()
         {
-            if (BulkQuantity.Equals(0) || Count < BulkQuantity)
+            if (_bulkQuantity.Equals(0) || Count < _bulkQuantity)
             {
-                return Count * StandardPrice;
+                return Count * _standardPrice;
             }
 
-            // The number of time the bulk quantity has been achieved
-            decimal bulkQualifiers = Math.Round((decimal)Count / (decimal)BulkQuantity);
+            // The number of times the bulk quantity has been achieved
+            decimal bulkQualifiers = Math.Round((decimal)Count / (decimal)_bulkQuantity);
             // The number of items that don't qualify for bulk discount
-            decimal standardQualifiers = Count - ((decimal)bulkQualifiers * (decimal)BulkQuantity);
+            decimal standardQualifiers = Count - ((decimal)bulkQualifiers * (decimal)_bulkQuantity);
 
-            decimal standardCost = standardQualifiers * StandardPrice;
-            decimal bulkCost = bulkQualifiers * BulkPrice;
+            decimal standardCost = standardQualifiers * _standardPrice;
+            decimal bulkCost = bulkQualifiers * _bulkPrice;
 
             return bulkCost + standardCost;
         }
