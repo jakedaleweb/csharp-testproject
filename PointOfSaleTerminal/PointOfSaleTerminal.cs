@@ -17,7 +17,7 @@ namespace PointOfSaleTerminal
             {
                 if (productKey.Equals(item.ProductKey))
                 {
-                    item.Count += 1;
+                    item.Count++;
                     break;
                 }
             }
@@ -25,7 +25,13 @@ namespace PointOfSaleTerminal
 
         public decimal CalculateTotal()
         {
-            return 1.10M;
+            decimal total = 0.0M;
+            foreach (ShoppingItem item in _shoppingItems)
+            {
+                total += item.CalculateCost();
+            }
+
+            return total;
         }
     }
 }
