@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using PointOfSaleTerminal;
-// using ShoppingItem;
 
 namespace PointOfSaleTerminal.UnitTests.Services
 {
